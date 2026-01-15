@@ -1,0 +1,4 @@
+minimumReleaseAge: 2880 # 2 days
+trustPolicyExclude:
+  - tailwind-merge@2.6.0
+trustPolicy: no-downgrade

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "esModuleInterop": true
+  },
+  "include": ["server.ts", "lib", "tools"]
+}

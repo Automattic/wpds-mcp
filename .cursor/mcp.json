@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "WPDS": {
+      "url": "http://localhost:3945/mcp"
+    }
+  }
+}
