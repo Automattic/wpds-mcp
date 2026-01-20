@@ -1,7 +1,6 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { register as listComponents } from './list-components.ts';
 
-const TOOLS = [listComponents];
+const TOOLS: Array<(server: McpServer) => void> = [];
 
 export function registerAll(server: McpServer) {
   for (const register of TOOLS) {

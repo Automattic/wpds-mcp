@@ -1,35 +1,77 @@
-const MANIFEST_URL = 'https://wordpress.github.io/gutenberg/index.json';
+const COMPONENTS_MANIFEST_URL =
+  'https://wordpress.github.io/gutenberg/manifests/components.json';
 
-interface ManifestEntry {
+interface ManifestComponent {
   id: string;
-  title: string;
   name: string;
-  importPath: string;
-  storiesImports: string[];
-  type: string;
-  tags: string[];
+  path: string;
+  import?: string;
+  description?: string;
+  jsDocTags?: Array<{
+    tag: string;
+    name?: string;
+    description?: string;
+  }>;
+  stories?: Array<{
+    name: string;
+    snippet?: string;
+  }>;
 }
 
-interface Manifest {
-  entries: ManifestEntry[];
+interface ComponentsManifest {
+  v: number;
+  components: Record<string, ManifestComponent>;
 }
 
-interface Component {
+export interface Component {
   name: string;
   description: string;
+  packageName: string;
 }
 
-export async function getComponents(): Promise<Component[]> {
-  const response = await fetch(MANIFEST_URL);
-  const data: Manifest = await response.json();
+const ALLOWED_PACKAGES = ['@wordpress/components', '@wordpress/ui'];
 
-  return Object.entries(data.entries)
-    .filter(
-      ([slug]) =>
-        slug.startsWith('design-system-components-') && slug.endsWith('--docs')
-    )
-    .map(([, entry]) => ({
-      name: entry.title.replace('Design System/Components/', ''),
-      description: entry.title,
-    }));
+/**
+ * Extract the package name from an import statement.
+ */
+function extractPackageName(importStatement: string): string | null {
+  const match = importStatement.match(/from\s+["']([^"']+)["']/);
+  return match ? match[1] : null;
+}
+
+let cachedComponents: Component[] | null = null;
+
+export async function getComponents(): Promise<Component[]> {
+  if (cachedComponents) {
+    return cachedComponents;
+  }
+
+  const response = await fetch(COMPONENTS_MANIFEST_URL);
+  if (!response.ok) {
+    throw new Error(
+      `Failed to fetch components manifest: ${response.status} ${response.statusText}`
+    );
+  }
+
+  const manifest: ComponentsManifest = await response.json();
+  const allComponents = Object.values(manifest.components);
+
+  cachedComponents = allComponents
+    .map((component) => {
+      const packageName = component.import
+        ? extractPackageName(component.import)
+        : null;
+
+      return {
+        name: component.name,
+        description: component.description || '',
+        packageName,
+      };
+    })
+    .filter((component): component is Component =>
+      component.packageName !== null &&
+      ALLOWED_PACKAGES.includes(component.packageName)
+    );
+
+  return cachedComponents;
 }

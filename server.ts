@@ -2,7 +2,8 @@ import { createMcpExpressApp } from '@modelcontextprotocol/sdk/server/express.js
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import cors from 'cors';
-import { registerAll } from './tools/index.ts';
+import { registerAll as registerResources } from './resources/index.ts';
+import { registerAll as registerTools } from './tools/index.ts';
 
 const app = createMcpExpressApp();
 const server = new McpServer({
@@ -10,7 +11,8 @@ const server = new McpServer({
   version: '1.0.0',
 });
 
-registerAll(server);
+registerResources(server);
+registerTools(server);
 
 app.use(
   cors({
