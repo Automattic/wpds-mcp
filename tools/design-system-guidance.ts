@@ -9,11 +9,11 @@ const __dirname = dirname(__filename);
 
 export function register(server: McpServer) {
   server.registerTool(
-    'design_system_guidance',
+    'start_design_system_task',
     {
       title: 'Design System Guidance',
       description:
-        'Provides workflow guidance and component recommendations for WordPress Design System work. Use this tool for any design system-related tasks.',
+        'REQUIRED FIRST STEP Provides workflow guidance and component recommendations for WordPress Design System work. Use this tool for any design system-related tasks.',
       inputSchema: z.object({
         query: z
           .string()
