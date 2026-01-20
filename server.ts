@@ -11,6 +11,7 @@ const app = createMcpExpressApp();
 const server = new McpServer({
   name: 'WPDS',
   version: '1.0.0',
+  description: 'A Model Context Protocol server for the WordPress Design System',
 });
 
 registerResources(server);
