@@ -24,7 +24,7 @@ app.use(
     origin: true,
     exposedHeaders: ['mcp-session-id'],
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'mcp-session-id'],
+    allowedHeaders: ['Content-Type', 'mcp-session-id', 'mcp-protocol-version'],
   })
 );
 
