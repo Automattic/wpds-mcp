@@ -83,7 +83,7 @@ export function register(server: McpServer) {
     'wpds://pages',
     {
       description:
-        'All public pages from the WP.org news site fetched via the REST API.',
+        'All public pages from the design system reference site fetched via the REST API.',
       mimeType: 'text/markdown',
     },
     async () => {
