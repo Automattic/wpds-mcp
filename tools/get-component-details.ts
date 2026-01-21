@@ -1,35 +1,29 @@
-import {
-  McpServer,
-  ResourceTemplate,
-} from '@modelcontextprotocol/sdk/server/mcp.js';
+import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
+import { z } from 'zod';
 import { getComponentDetail } from '../lib/wpds.ts';
 
 export function register(server: McpServer) {
-  const template = new ResourceTemplate('wpds://components/{name}', {
-    list: undefined,
-  });
-
-  server.registerResource(
-    'component-detail',
-    template,
+  server.registerTool(
+    'get_component_details',
     {
+      title: 'Get Component Details',
       description:
-        'Detailed documentation for a WordPress Design System component including props, usage examples, and import statements',
-      mimeType: 'text/markdown',
+        'Get detailed documentation for a WordPress Design System component including props, usage examples, and import statements.',
+      inputSchema: {
+        name: z
+          .string()
+          .describe('The component name (e.g., "Button", "Modal")'),
+      },
     },
-    async (uri, variables) => {
-      const componentName = Array.isArray(variables.name)
-        ? variables.name[0]
-        : variables.name;
-      const component = await getComponentDetail(componentName);
+    async ({ name }) => {
+      const component = await getComponentDetail(name);
 
       if (!component) {
         return {
-          contents: [
+          content: [
             {
-              uri: uri.href,
-              mimeType: 'text/markdown',
-              text: `# Component Not Found\n\nNo component named "${componentName}" was found in the WordPress Design System.`,
+              type: 'text',
+              text: `No component named "${name}" was found in the WordPress Design System.`,
             },
           ],
         };
@@ -93,14 +87,10 @@ export function register(server: McpServer) {
         }
       }
 
+      const markdown = sections.join('\n');
+
       return {
-        contents: [
-          {
-            uri: uri.href,
-            mimeType: 'text/markdown',
-            text: sections.join('\n'),
-          },
-        ],
+        content: [{ type: 'text', text: markdown }],
       };
     },
   );

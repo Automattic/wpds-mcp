@@ -81,13 +81,12 @@ function getSiteUrl(): string {
 }
 
 export function register(server: McpServer) {
-  server.registerResource(
-    'pages',
-    'wpds://pages',
+  server.registerTool(
+    'get_pages',
     {
+      title: 'Get Pages',
       description:
-        'All public pages from the design system reference site fetched via the REST API.',
-      mimeType: 'text/markdown',
+        'Get all public pages from the WordPress Design System reference site.',
     },
     async () => {
       const siteUrl = getSiteUrl();
@@ -137,13 +136,7 @@ export function register(server: McpServer) {
       ].join('\n');
 
       return {
-        contents: [
-          {
-            uri: 'wpds://pages',
-            mimeType: 'text/markdown',
-            text: markdown,
-          },
-        ],
+        content: [{ type: 'text', text: markdown }],
       };
     },
   );

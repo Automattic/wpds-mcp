@@ -5,7 +5,6 @@ import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { isInitializeRequest } from '@modelcontextprotocol/sdk/types.js';
 import cors from 'cors';
-import { registerAll as registerResources } from './resources/index.ts';
 import { registerAll as registerTools } from './tools/index.ts';
 
 // Parse CLI arguments
@@ -20,7 +19,6 @@ const server = new McpServer({
     'A Model Context Protocol server for the WordPress Design System',
 });
 
-registerResources(server);
 registerTools(server);
 
 if (useStdio) {

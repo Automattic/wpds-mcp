@@ -2,13 +2,12 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { getComponents } from '../lib/wpds.ts';
 
 export function register(server: McpServer) {
-  server.registerResource(
-    'components',
-    'wpds://components',
+  server.registerTool(
+    'get_components',
     {
+      title: 'Get Components',
       description:
-        'Index of available components. For detailed docs, fetch wpds://components/{name}',
-      mimeType: 'text/markdown',
+        'Get a list of all available WordPress Design System components with their package names and descriptions.',
     },
     async () => {
       const components = await getComponents();
@@ -16,8 +15,8 @@ export function register(server: McpServer) {
       const markdown = [
         '# WordPress Design System Components',
         '',
-        '> For detailed documentation on any component, fetch `wpds://components/{component-name}`',
-        '> Example: `wpds://components/Button`',
+        '> For detailed documentation on any component, use the `get_component_details` tool with the component name.',
+        '> Example: `get_component_details({ name: "Button" })`',
         '',
         'Available components listed below. Import using: `import { ComponentName } from "package-name";`',
         '',
@@ -31,13 +30,7 @@ export function register(server: McpServer) {
       ].join('\n');
 
       return {
-        contents: [
-          {
-            uri: 'wpds://components',
-            mimeType: 'text/markdown',
-            text: markdown,
-          },
-        ],
+        content: [{ type: 'text', text: markdown }],
       };
     },
   );
