@@ -86,7 +86,7 @@ export function register(server: McpServer) {
     'wpds://pages',
     {
       description:
-        'All public pages from the design system reference site fetched via the REST API.',
+        'All public pages from the design system reference site fetched via the REST API. For opening the full page content, fetch wpds://pages/{slug}',
       mimeType: 'text/markdown',
     },
     async () => {
@@ -95,6 +95,9 @@ export function register(server: McpServer) {
 
       const markdown = [
         `# WordPress Pages from ${siteUrl}`,
+        '',
+        '> For detailed information on any page, fetch `wpds://pages/{page-slug}`',
+        '> Example: `wpds://pages/getting-started`',
         '',
         `Found ${pages.length} public page(s).`,
         '',
