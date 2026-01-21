@@ -1,6 +1,5 @@
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 
-// TODO: Update this URL to point to the correct skills file location
 const SKILLS_URL =
   'https://raw.githubusercontent.com/Automattic/agent-skills/refs/heads/trunk/skills/wpds/SKILL.md';
 
