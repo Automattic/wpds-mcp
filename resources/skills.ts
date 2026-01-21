@@ -10,22 +10,12 @@ const SKILLS_PREAMBLE = `
 This is a SKILLS DOCUMENT, not regular documentation.
 
 HOW TO USE THIS DOCUMENT:
-1. This document contains PROCEDURES you must follow step-by-step
-2. Read the "When to use" section to confirm this skill applies to your task
-3. Gather all items listed in "Inputs required" before starting
-4. Execute each step in the "Procedure" section IN ORDER
+1. This document contains rules you must follow step-by-step
+2. Make sure all the points in the "Prerequisites" sections are satisfied.
+3. Read the "When to use" section to confirm this skill applies to your task.
+4. Follow all the points from the "Rules" section
 5. Do not skip steps or improvise unless the document explicitly allows it
-6. Complete all "Verification" checks before considering the task done
-7. If something fails, consult "Failure modes / debugging" before asking for help
-
-DOCUMENT STRUCTURE:
-- Frontmatter (YAML): metadata about the skill (name, description, compatibility)
-- When to use: conditions that trigger this skill
-- Inputs required: prerequisites you must have
-- Procedure: numbered steps to follow sequentially
-- Verification: how to confirm success
-- Failure modes: common problems and solutions
-- Escalation: when and how to seek help
+6. Follow the "Output" section in order to format the reply to the task
 -->
 
 `.trimStart();
@@ -43,10 +33,8 @@ export function register(server: McpServer) {
       // TODO: This implementation fetches only the main skills file.
       // It does NOT automatically follow or fetch linked local resources
       // (e.g., references/*.md, scripts, assets) mentioned in the document.
-      // To support linked resources, consider:
-      // - Adding a separate tool like `get_skill_reference` to fetch them on demand
-      // - Pre-processing to concatenate all referenced content
-      // - Registering referenced files as MCP resources
+      // In the long terms, we should consider expecting users to install actions
+      // independently from the MCP.
 
       const response = await fetch(SKILLS_URL);
       if (!response.ok) {
