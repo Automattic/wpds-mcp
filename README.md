@@ -20,9 +20,27 @@ pnpm install
 # Test with the MCP Inspector (recommended for getting started)
 pnpm inspect
 
-# Run the server directly
+# Run the server directly (defaults to HTTP transport)
 pnpm dev
+
+# Run with stdio transport
+pnpm dev -- --stdio
+
+# Run with HTTP transport explicitly
+pnpm dev -- --http
 ```
+
+### Transport Modes
+
+The server supports two transport modes:
+
+- **HTTP transport** (default): Runs an Express server on `http://localhost:3945/mcp`. Suitable for web-based clients like Cursor.
+- **stdio transport**: Uses standard input/output. Suitable for local MCP clients like Claude Desktop.
+
+Select the transport mode using CLI arguments:
+
+- `--http` - Use HTTP transport (default)
+- `--stdio` - Use stdio transport
 
 ### Using the Inspector
 
@@ -30,7 +48,26 @@ The [MCP Inspector](https://modelcontextprotocol.io/docs/tools/inspector) provid
 
 ### Connecting to AI Assistants
 
-Once tested, the server runs on `http://localhost:3945/mcp` and can be connected to AI assistants like Claude Desktop or Cursor.
+**Claude Desktop (stdio transport):**
+
+Add to your Claude Desktop configuration file (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+
+```json
+{
+  "mcpServers": {
+    "wpds": {
+      "command": "node",
+      "args": ["/path/to/wpds-mcp/server.ts", "--stdio"]
+    }
+  }
+}
+```
+
+Replace `/path/to/wpds-mcp/server.ts` with the absolute path to this server file.
+
+**Cursor or other HTTP clients:**
+
+The server runs on `http://localhost:3945/mcp` by default when using HTTP transport. Configure your client to connect to this endpoint.
 
 ## License
 
