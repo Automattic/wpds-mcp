@@ -49,7 +49,7 @@ export async function getComponents(): Promise<Component[]> {
   const response = await fetch(COMPONENTS_MANIFEST_URL);
   if (!response.ok) {
     throw new Error(
-      `Failed to fetch components manifest: ${response.status} ${response.statusText}`
+      `Failed to fetch components manifest: ${response.status} ${response.statusText}`,
     );
   }
 
@@ -68,9 +68,10 @@ export async function getComponents(): Promise<Component[]> {
         packageName,
       };
     })
-    .filter((component): component is Component =>
-      component.packageName !== null &&
-      ALLOWED_PACKAGES.includes(component.packageName)
+    .filter(
+      (component): component is Component =>
+        component.packageName !== null &&
+        ALLOWED_PACKAGES.includes(component.packageName),
     );
 
   return cachedComponents;

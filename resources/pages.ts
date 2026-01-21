@@ -51,10 +51,10 @@ async function fetchWordPressPages(siteUrl: string): Promise<WordPressPage[]> {
     const apiUrl = `${baseUrl}/wp-json/wp/v2/pages?per_page=${perPage}&page=${page}&status=publish`;
 
     const response = await fetch(apiUrl);
-    
+
     if (!response.ok) {
       throw new Error(
-        `Failed to fetch pages from ${siteUrl}: ${response.status} ${response.statusText}`
+        `Failed to fetch pages from ${siteUrl}: ${response.status} ${response.statusText}`,
       );
     }
 
@@ -62,7 +62,10 @@ async function fetchWordPressPages(siteUrl: string): Promise<WordPressPage[]> {
     allPages.push(...pages);
 
     // Check if there are more pages
-    const totalPages = parseInt(response.headers.get('X-WP-TotalPages') || '1', 10);
+    const totalPages = parseInt(
+      response.headers.get('X-WP-TotalPages') || '1',
+      10,
+    );
     hasMore = page < totalPages;
     page++;
   }
@@ -121,7 +124,10 @@ export function register(server: McpServer) {
               .trim()
               .substring(0, 500);
             if (content) {
-              lines.push('', `**Content Preview:** ${content}${content.length === 500 ? '...' : ''}`);
+              lines.push(
+                '',
+                `**Content Preview:** ${content}${content.length === 500 ? '...' : ''}`,
+              );
             }
           }
 
@@ -139,6 +145,6 @@ export function register(server: McpServer) {
           },
         ],
       };
-    }
+    },
   );
 }

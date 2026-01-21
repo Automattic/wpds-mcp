@@ -19,7 +19,7 @@ export function register(server: McpServer) {
           .string()
           .optional()
           .describe(
-            'Optional specific query or topic to search for in the guidance document. If not provided, returns all guidance.'
+            'Optional specific query or topic to search for in the guidance document. If not provided, returns all guidance.',
           ),
       }),
     },
@@ -30,7 +30,7 @@ export function register(server: McpServer) {
           __dirname,
           '..',
           'guidance',
-          'design-system-workflow.md'
+          'design-system-workflow.md',
         );
         const guidanceContent = await readFile(guidancePath, 'utf-8');
 
@@ -100,6 +100,6 @@ export function register(server: McpServer) {
           isError: true,
         };
       }
-    }
+    },
   );
 }

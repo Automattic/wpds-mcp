@@ -11,7 +11,8 @@ const app = createMcpExpressApp();
 const server = new McpServer({
   name: 'WPDS',
   version: '1.0.0',
-  description: 'A Model Context Protocol server for the WordPress Design System',
+  description:
+    'A Model Context Protocol server for the WordPress Design System',
 });
 
 registerResources(server);
@@ -26,7 +27,7 @@ app.use(
     exposedHeaders: ['mcp-session-id'],
     methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'mcp-session-id', 'mcp-protocol-version'],
-  })
+  }),
 );
 
 // POST /mcp - Handle client messages
@@ -47,7 +48,11 @@ app.post('/mcp', async (req, res) => {
     });
     await server.connect(transport);
   } else {
-    res.status(400).json({ jsonrpc: '2.0', error: { code: -32000, message: 'Bad request' }, id: null });
+    res.status(400).json({
+      jsonrpc: '2.0',
+      error: { code: -32000, message: 'Bad request' },
+      id: null,
+    });
     return;
   }
 
@@ -58,7 +63,11 @@ app.post('/mcp', async (req, res) => {
 app.get('/mcp', async (req, res) => {
   const sessionId = req.headers['mcp-session-id'] as string | undefined;
   if (!sessionId || !transports[sessionId]) {
-    res.status(404).json({ jsonrpc: '2.0', error: { code: -32000, message: 'Session not found' }, id: null });
+    res.status(404).json({
+      jsonrpc: '2.0',
+      error: { code: -32000, message: 'Session not found' },
+      id: null,
+    });
     return;
   }
   await transports[sessionId].handleRequest(req, res);
@@ -71,7 +80,11 @@ app.delete('/mcp', async (req, res) => {
     await transports[sessionId].handleRequest(req, res);
     delete transports[sessionId];
   } else {
-    res.status(404).json({ jsonrpc: '2.0', error: { code: -32000, message: 'Session not found' }, id: null });
+    res.status(404).json({
+      jsonrpc: '2.0',
+      error: { code: -32000, message: 'Session not found' },
+      id: null,
+    });
   }
 });
 
