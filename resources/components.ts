@@ -7,7 +7,7 @@ export function register(server: McpServer) {
     'wpds://components',
     {
       description:
-        'Index of available components in the WordPress Design System with brief descriptions',
+        'Index of available components. For detailed docs, fetch wpds://components/{name}',
       mimeType: 'text/markdown',
     },
     async () => {
@@ -15,6 +15,9 @@ export function register(server: McpServer) {
 
       const markdown = [
         '# WordPress Design System Components',
+        '',
+        '> For detailed documentation on any component, fetch `wpds://components/{component-name}`',
+        '> Example: `wpds://components/Button`',
         '',
         'Available components listed below. Import using: `import { ComponentName } from "package-name";`',
         '',
