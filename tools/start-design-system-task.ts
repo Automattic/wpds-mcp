@@ -5,16 +5,13 @@ export function register(server: McpServer) {
     'start_design_system_task',
     {
       title: 'Start Design System Task',
-      description:
-        'REQUIRED FIRST STEP for any WordPress Design System work. Returns a Skills document that you MUST follow step-by-step.',
+      description: 'REQUIRED FIRST STEP for any WordPress Design System work.',
     },
     async () => {
       const instructions = [
         '## IMPORTANT: Skills Document Available',
         '',
-        'A **Skills document** is available at `wpds://skills` that contains structured procedures you must read now and follow.',
-        '',
-        'Fetch the resource `wpds://skills` to begin.',
+        'For the best results, make sure you have installed the WPDS skills for your agent.',
       ].join('\n');
 
       return {
