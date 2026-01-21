@@ -113,13 +113,13 @@ export async function getComponents(): Promise<Component[]> {
 }
 
 export async function getComponentDetail(
-  name: string
+  name: string,
 ): Promise<ComponentDetail | null> {
   const manifest = await getManifest();
   const allComponents = Object.values(manifest.components);
 
   const component = allComponents.find(
-    (c) => c.name.toLowerCase() === name.toLowerCase()
+    (c) => c.name.toLowerCase() === name.toLowerCase(),
   );
 
   if (!component) {
@@ -149,7 +149,7 @@ export async function getComponentDetail(
           description.toLowerCase().includes('@deprecated') ||
           description.toLowerCase().includes('@ignore'),
       };
-    }
+    },
   );
 
   return {

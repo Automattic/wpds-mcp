@@ -52,7 +52,7 @@ export function register(server: McpServer) {
           '',
           '```js',
           component.importStatement,
-          '```'
+          '```',
         );
       }
 
@@ -68,7 +68,7 @@ export function register(server: McpServer) {
             : '';
           sections.push(
             `### \`${prop.name}\`: \`${prop.type}\`${requiredBadge}${defaultNote}`,
-            ''
+            '',
           );
           if (prop.description) {
             // Clean up description - remove @default annotations since we show them above
@@ -102,6 +102,6 @@ export function register(server: McpServer) {
           },
         ],
       };
-    }
+    },
   );
 }
