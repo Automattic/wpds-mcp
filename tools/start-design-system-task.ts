@@ -5,8 +5,7 @@ export function register(server: McpServer) {
     'start_design_system_task',
     {
       title: 'Start Design System Task',
-      description:
-        'REQUIRED FIRST STEP for any WordPress Design System work.',
+      description: 'REQUIRED FIRST STEP for any WordPress Design System work.',
     },
     async () => {
       const instructions = [
