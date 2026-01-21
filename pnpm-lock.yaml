@@ -30,6 +30,9 @@ importers:
       '@typescript/native-preview':
         specifier: 7.0.0-dev.20260113.1
         version: 7.0.0-dev.20260113.1
+      prettier:
+        specifier: ^3.8.0
+        version: 3.8.0
 
 packages:
 
@@ -1049,6 +1052,11 @@ packages:
   pkce-challenge@5.0.1:
     resolution: {integrity: sha512-wQ0b/W4Fr01qtpHlqSqspcj3EhBvimsdh0KlHhH8HRZnMsEa0ea2fTULOXOS9ccQr3om+GcGRk4e+isrZWV8qQ==}
     engines: {node: '>=16.20.0'}
+
+  prettier@3.8.0:
+    resolution: {integrity: sha512-yEPsovQfpxYfgWNhCfECjG5AQaO+K3dp6XERmOepyPDVqcJm+bjyCVO3pmU+nAPe0N5dDvekfGezt/EIiRe1TA==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   prismjs@1.30.0:
     resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
@@ -2345,6 +2353,8 @@ snapshots:
   pkce-challenge@4.1.0: {}
 
   pkce-challenge@5.0.1: {}
+
+  prettier@3.8.0: {}
 
   prismjs@1.30.0: {}
 

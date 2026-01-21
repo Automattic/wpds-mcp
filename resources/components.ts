@@ -36,6 +36,6 @@ export function register(server: McpServer) {
           },
         ],
       };
-    }
+    },
   );
 }

@@ -50,6 +50,7 @@ The WordPress Design System (WPDS) provides a comprehensive set of components, p
 ### 4. Component Recommendations
 
 #### Form Components
+
 - **FormInput**: For text inputs, emails, passwords
 - **FormSelect**: For dropdown selections
 - **FormTextarea**: For multi-line text input
@@ -58,24 +59,28 @@ The WordPress Design System (WPDS) provides a comprehensive set of components, p
 - **Button**: For form submissions (use appropriate variants)
 
 #### Layout Components
+
 - **Card**: For content containers with elevation
 - **Grid**: For responsive grid layouts
 - **Stack**: For vertical or horizontal spacing
 - **Container**: For content width constraints
 
 #### Navigation Components
+
 - **Navigation**: For primary site navigation
 - **Breadcrumbs**: For hierarchical navigation
 - **Pagination**: For paginated content
 - **Tabs**: For content organization
 
 #### Feedback Components
+
 - **Notice**: For informational messages and alerts
 - **Spinner**: For loading states
 - **ProgressBar**: For progress indication
 - **Modal**: For dialog boxes and overlays
 
 #### Content Components
+
 - **Heading**: For semantic headings (h1-h6)
 - **Text**: For body text with typography variants
 - **Badge**: For labels and tags
@@ -83,6 +88,7 @@ The WordPress Design System (WPDS) provides a comprehensive set of components, p
 - **Divider**: For visual separation
 
 #### Interactive Components
+
 - **Button**: Primary, secondary, tertiary variants
 - **Link**: For navigation and external links
 - **IconButton**: For icon-only actions
@@ -92,24 +98,28 @@ The WordPress Design System (WPDS) provides a comprehensive set of components, p
 ## Common Patterns
 
 ### Form Patterns
+
 - Always use FormInput, FormSelect, etc. for form fields
 - Group related fields using Card or Stack
 - Use Button with appropriate variant for actions
 - Show validation states using Notice components
 
 ### Card Patterns
+
 - Use Card for content blocks
 - Combine with Stack for internal spacing
 - Use Grid for card layouts
 - Add Button or Link for actions
 
 ### Modal Patterns
+
 - Use Modal for critical actions or additional information
 - Include primary and secondary actions
 - Use FormInput for modal forms
 - Always provide close mechanism
 
 ### Data Display Patterns
+
 - Use Table for structured data
 - Use Card for content cards
 - Combine with Pagination for large datasets
