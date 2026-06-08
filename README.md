@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> This project has been superseded by the [`@wordpress/design-system-mcp` package](https://github.com/WordPress/gutenberg/tree/trunk/packages/design-system-mcp).
+> This repository has been archived. Consider using the [`@wordpress/design-system-mcp` package](https://github.com/WordPress/gutenberg/tree/trunk/packages/design-system-mcp) instead.
 
 # WordPress Design System MCP Server
 
