@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository has been archived. Consider using the [`@wordpress/design-system-mcp` package](https://github.com/WordPress/gutenberg/tree/trunk/packages/design-system-mcp) instead.
+
 # WordPress Design System MCP Server
 
 An [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server that provides AI assistants with access to WordPress Design System guidance and component information.
